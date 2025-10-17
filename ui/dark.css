@@ -1,20 +1,23 @@
-@media (prefers-color-scheme: dark){
-  :root{
+/* ui/dark.css */
+
+/* AUTO: follow OS only when there's NO manual override */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
     --bg-page:#0f1115; --bg-surface:#151821;
     --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
 
     --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
-    --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115;
-    --border-subtle:#30364a;
-
-    --table-row-alt:#11141d;
+    --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115; --border-subtle:#30364a;
   }
 }
 
-/* Optional manual override */
-[data-theme="dark"]{
+/* EXPLICIT OVERRIDE: manual choice always wins */
+[data-theme="dark"] {
   --bg-page:#0f1115; --bg-surface:#151821;
   --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
   --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
   --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115; --border-subtle:#30364a;
 }
+
+/* Optional for symmetry (you can omit; light is already in :root via tokens.css) */
+[data-theme="light"] {}
