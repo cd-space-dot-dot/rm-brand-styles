@@ -49,6 +49,7 @@
         <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Toggle theme">Theme: Auto</button>
         <button id="densityToggle" class="btn">Density: comfortable</button>
         <button id="verifyBtn" class="btn">Verify Contrast</button>
+        <button id="forceOpenModal" class="btn">Open Demo Modal</button>
       </div>
     </header>
 
@@ -173,9 +174,31 @@
   <!-- Toast region -->
   <div class="rm-toasts" aria-live="polite" aria-atomic="true"></div>
 
+  <script>
+  // Fail-safe: wire up close & backdrop-click even if modules didn't run.
+  (function () {
+    var modalEl = document.getElementById('demoModal');
+    if (!modalEl) return;
+
+    // Close buttons
+    modalEl.querySelectorAll('[data-close]').forEach(function (btn) {
+      btn.addEventListener('click', function () { modalEl.hidden = true; });
+    });
+
+    // Backdrop click
+    modalEl.addEventListener('click', function (e) {
+      if (e.target === modalEl) modalEl.hidden = true;
+    });
+
+    // Optional: a visible "Open Demo Modal" button at the top of the page
+    var force = document.getElementById('forceOpenModal');
+    if (force) force.addEventListener('click', function () { modalEl.hidden = false; });
+  }());
+  </script>
+
   <!-- App wiring -->
   <script type="module">
-    import { initModal, initTabs, toast } from './ui/rm-ui.entry.js';
+    import { initModal, initTabs, toast, verifyContrast } from './ui/rm-ui.entry.js';
 
     // Tabs
     initTabs(document.getElementById('demoTabs'));
