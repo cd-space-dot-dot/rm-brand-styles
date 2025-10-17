@@ -1,0 +1,20 @@
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg-page:#0f1115; --bg-surface:#151821;
+    --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
+
+    --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
+    --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115;
+    --border-subtle:#30364a;
+
+    --table-row-alt:#11141d;
+  }
+}
+
+/* Optional manual override */
+[data-theme="dark"]{
+  --bg-page:#0f1115; --bg-surface:#151821;
+  --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
+  --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
+  --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115; --border-subtle:#30364a;
+}
