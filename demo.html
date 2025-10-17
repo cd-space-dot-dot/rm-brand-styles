@@ -212,6 +212,15 @@
     tipBtn.addEventListener('mouseenter', showTip);
     tipBtn.addEventListener('mouseleave', hideTip);
 
+    // Ensure the module actually ran:
+    console.debug('RM demo booted');
+
+    // Close buttons are already wired; add overlay-click-to-close:
+    modalEl.addEventListener('click', (e) => {
+      // if you clicked the backdrop (the element with class="modal"), close it
+      if (e.target === modalEl) modal.close();
+    });
+
     // Skeleton → Data swap
     setTimeout(() => {
       document.getElementById('s1').outerHTML = '<h3 style="margin:0">Loaded title</h3>';
