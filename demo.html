@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>RM UI – Demo</title>
+
+  <!-- DEV: use entry (which @imports split files). PROD: replace with /dist/rm-ui.css -->
+  <link rel="stylesheet" href="./ui/rm-ui.entry.css" />
+
+  <style>
+    /* Simple app shell just for the demo */
+    .app-shell { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
+    header, footer { background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle); }
+    header { position: sticky; top: 0; z-index: var(--z-sticky); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1.2fr .8fr; } }
+    .card { padding: 16px; }
+    .demo-section h2 { margin: 0 0 8px 0; font-family: var(--font-display); font-size: var(--fs-xl); }
+    .muted { color: var(--text-secondary); font-size: var(--fs-sm); }
+    .spacer { height: 16px; }
+  </style>
+</head>
+<body class="density--comfortable">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="app-shell">
+    <header>
+      <div class="container cluster">
+        <strong style="font-family: var(--font-display); letter-spacing: .5px;">RM UI Demo</strong>
+        <span class="muted">brand tokens • components • a11y</span>
+        <span style="flex:1"></span>
+        <button id="darkToggle" class="btn">Toggle Dark</button>
+        <button id="densityToggle" class="btn">Density: comfortable</button>
+        <button id="verifyBtn" class="btn">Verify Contrast</button>
+      </div>
+    </header>
+
+    <main id="main" class="container stack-3">
+      <!-- Tabs -->
+      <section class="demo-section surface card">
+        <h2>Tabs</h2>
+        <p class="muted">Arrow keys navigate; Enter/Click activates; single active tab.</p>
+        <div role="tablist" aria-label="Demo tabs" class="tabs" id="demoTabs">
+          <button role="tab" id="t-overview" aria-controls="p-overview" aria-selected="true" class="tab is-active">Overview</button>
+          <button role="tab" id="t-details" aria-controls="p-details" class="tab">Details</button>
+          <button role="tab" id="t-settings" aria-controls="p-settings" class="tab">Settings</button>
+        </div>
+        <section id="p-overview" role="tabpanel" aria-labelledby="t-overview" class="stack-2">
+          <p>Use RM tokens and components to build consistent UIs.</p>
+          <span class="pill">Galaxy Tag</span>
+        </section>
+        <section id="p-details" role="tabpanel" aria-labelledby="t-details" hidden>
+          <p>Tables, pills, alerts, toasts, skeletons, and more.</p>
+          <div class="alert alert--ok"><span>Looks good ✅</span></div>
+        </section>
+        <section id="p-settings" role="tabpanel" aria-labelledby="t-settings" hidden>
+          <p>Dark mode + density toggles are token-driven.</p>
+          <div class="alert alert--warn"><span>Remember to test contrast in dark mode.</span></div>
+        </section>
+      </section>
+
+      <div class="grid">
+        <!-- Forms + Toasts -->
+        <section class="demo-section surface card">
+          <h2>Form</h2>
+          <p class="muted">Visible labels; error summary jumps focus; live toasts for feedback.</p>
+
+          <div id="formErrors" class="error-summary" role="alert" aria-labelledby="err-title" tabindex="-1" hidden>
+            <h3 id="err-title" style="margin:0 0 8px 0">There’s a problem</h3>
+            <ul id="errList" style="margin:0; padding-left:20px"></ul>
+          </div>
+
+          <form id="demoForm" class="stack-3" novalidate>
+            <div>
+              <label for="email">Email address</label>
+              <input id="email" name="email" class="input" placeholder="you@company.com" />
+              <p id="email-error" class="field-error" hidden>Enter a valid email address</p>
+            </div>
+            <div>
+              <label for="role">Role</label>
+              <select id="role" name="role" class="select">
+                <option value="">Select one</option>
+                <option>Founder</option>
+                <option>Marketer</option>
+                <option>Engineer</option>
+              </select>
+            </div>
+            <div class="cluster">
+              <button type="submit" class="btn btn--primary">Submit</button>
+              <button type="button" id="toastOk" class="btn">Toast OK</button>
+              <button type="button" id="toastErr" class="btn">Toast Error</button>
+              <button type="button" id="openModal" class="btn">Open Modal</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Skeletons + Table + Tooltip -->
+        <section class="demo-section surface card">
+          <h2>Data & Loaders</h2>
+          <p class="muted">Skeleton first, then data. Tooltip via <code>aria-describedby</code>.</p>
+
+          <div id="dataBlock" class="stack-2">
+            <div id="s1" class="skeleton skeleton--title"></div>
+            <div id="s2" class="skeleton skeleton--text"></div>
+            <div id="s3" class="skeleton skeleton--text"></div>
+          </div>
+
+          <div class="spacer"></div>
+
+          <div style="position:relative; display:inline-block;">
+            <button id="tipBtn" aria-describedby="tt1" class="btn">Hover/Focus for tip</button>
+            <div id="tt1" role="tooltip" class="rm-tooltip" hidden>Short helper text for this action.</div>
+          </div>
+
+          <div class="spacer"></div>
+
+          <table class="table">
+            <caption>Recent Items</caption>
+            <thead>
+              <tr><th>Item</th><th>Status</th><th>Owner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Onboarding deck</td><td><span class="badge">New</span></td><td>Avery</td></tr>
+              <tr><td>Email template</td><td><span class="badge">Review</span></td><td>Sam</td></tr>
+              <tr><td>Campaign brief</td><td><span class="badge">Ready</span></td><td>Dee</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container cluster">
+        <span class="muted">© RM UI Demo</span>
+        <span style="flex:1"></span>
+        <span class="muted">Try density & dark toggles above.</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="demoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+    <div class="modal__panel stack-3" aria-describedby="m-desc">
+      <div class="cluster"><h3 id="m-title" style="margin:0">Settings</h3><span class="muted" id="m-desc">Update preferences</span></div>
+      <div class="stack-2">
+        <label for="name">Name</label>
+        <input id="name" class="input" placeholder="Your name" />
+      </div>
+      <div class="cluster" style="justify-content:flex-end">
+        <button data-close class="btn">Close</button>
+        <button data-close class="btn btn--primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live region container (a11y.css expects this; helper will create if missing) -->
+  <div class="rm-toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- DEV: use entry module. PROD: replace with /dist/rm-ui.js -->
+  <script type="module">
+    import { initModal, initTabs, toast, verifyContrast } from './ui/rm-ui.entry.js';
+
+    // Tabs
+    const tabsRoot = document.getElementById('demoTabs');
+    initTabs(tabsRoot);
+
+    // Modal
+    const modalEl = document.getElementById('demoModal');
+    const modal = initModal(modalEl);
+    document.getElementById('openModal').addEventListener('click', modal.open);
+    modalEl.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', modal.close));
+
+    // Toasts
+    document.getElementById('toastOk').addEventListener('click', () => toast('Saved successfully'));
+    document.getElementById('toastErr').addEventListener('click', () => toast('Something went wrong', { polite: false }));
+
+    // Form validation (minimal demo)
+    const form = document.getElementById('demoForm');
+    const formErrors = document.getElementById('formErrors');
+    const errList = document.getElementById('errList');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('email');
+      const emailErr = document.getElementById('email-error');
+      const valid = /\S+@\S+\.\S+/.test(email.value);
+      errList.innerHTML = '';
+      if (!valid) {
+        formErrors.hidden = false;
+        email.setAttribute('aria-invalid', 'true');
+        email.setAttribute('aria-describedby', 'email-error');
+        emailErr.hidden = false;
+        errList.innerHTML = `<li><a href="#email">Enter a valid email address</a></li>`;
+        formErrors.focus();
+      } else {
+        email.removeAttribute('aria-invalid');
+        email.removeAttribute('aria-describedby');
+        emailErr.hidden = true;
+        formErrors.hidden = true;
+        toast('Form submitted');
+      }
+    });
+
+    // Tooltip (basic show/hide on hover/focus)
+    const tipBtn = document.getElementById('tipBtn');
+    const tip = document.getElementById('tt1');
+    const showTip = () => tip.hidden = false;
+    const hideTip = () => tip.hidden = true;
+    tipBtn.addEventListener('focus', showTip);
+    tipBtn.addEventListener('blur', hideTip);
+    tipBtn.addEventListener('mouseenter', showTip);
+    tipBtn.addEventListener('mouseleave', hideTip);
+
+    // Skeleton → Data swap
+    setTimeout(() => {
+      document.getElementById('s1').outerHTML = '<h3 style="margin:0">Loaded title</h3>';
+      document.getElementById('s2').outerHTML = '<p>Data row A now visible.</p>';
+      document.getElementById('s3').outerHTML = '<p>Data row B now visible.</p>';
+    }, 1200);
+
+    // Density toggle
+    const densityBtn = document.getElementById('densityToggle');
+    const body = document.body;
+    const densities = ['comfortable','compact','cozy'];
+    let di = 0;
+    densityBtn.addEventListener('click', () => {
+      di = (di + 1) % densities.length;
+      body.classList.remove('density--comfortable','density--compact','density--cozy');
+      body.classList.add(`density--${densities[di]}`);
+      densityBtn.textContent = `Density: ${densities[di]}`;
+    });
+
+    // Dark mode toggle
+    const darkBtn = document.getElementById('darkToggle');
+    darkBtn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const dark = root.getAttribute('data-theme') === 'dark';
+      if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+    });
+
+    // Contrast verify (logs table in DevTools)
+    document.getElementById('verifyBtn').addEventListener('click', () => {
+      if (window.RM_A11Y?.verify) window.RM_A11Y.verify();
+      else console.info('Contrast verifier loads when verify-contrast.js is included.');
+    });
+  </script>
+
+  <!-- Optional: include contrast verifier in dev -->
+  <script src="./ui/a11y/verify-contrast.js" defer></script>
+</body>
+</html>
