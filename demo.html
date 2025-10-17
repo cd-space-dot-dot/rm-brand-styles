@@ -5,7 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>RM UI – Demo</title>
 
-  <!-- DEV: use entry (which @imports split files). PROD: replace with /dist/rm-ui.css -->
+  <!-- Boot theme BEFORE paint (SSR/Next-friendly) -->
+  <script>
+    (function () {
+      try {
+        var k = 'rm-theme';                 // 'light' | 'dark' | 'auto'
+        var m = localStorage.getItem(k);
+        if (m === 'light' || m === 'dark') {
+          document.documentElement.setAttribute('data-theme', m);
+        } else {
+          document.documentElement.removeAttribute('data-theme'); // auto (follow OS)
+        }
+      } catch (e) { /* storage blocked? fall back to auto */ }
+    }());
+  </script>
+
+  <!-- DEV: entry file (@imports all CSS). PROD: swap to /dist/rm-ui.css -->
   <link rel="stylesheet" href="./ui/rm-ui.entry.css" />
 
   <style>
@@ -31,7 +46,7 @@
         <strong style="font-family: var(--font-display); letter-spacing: .5px;">RM UI Demo</strong>
         <span class="muted">brand tokens • components • a11y</span>
         <span style="flex:1"></span>
-        <button id="darkToggle" class="btn">Toggle Dark</button>
+        <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Toggle theme">Theme: Auto</button>
         <button id="densityToggle" class="btn">Density: comfortable</button>
         <button id="verifyBtn" class="btn">Verify Contrast</button>
       </div>
@@ -155,71 +170,26 @@
     </div>
   </div>
 
-  <!-- Live region container (a11y.css expects this; helper will create if missing) -->
+  <!-- Toast region -->
   <div class="rm-toasts" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- DEV: use entry module. PROD: replace with /dist/rm-ui.js -->
+  <!-- App wiring -->
   <script type="module">
-    import { initModal, initTabs, toast, verifyContrast } from './ui/rm-ui.entry.js';
+    import { initModal, initTabs, toast } from './ui/rm-ui.entry.js';
 
     // Tabs
-    const tabsRoot = document.getElementById('demoTabs');
-    initTabs(tabsRoot);
+    initTabs(document.getElementById('demoTabs'));
 
-    // Modal
+    // Modal (+ overlay click to close)
     const modalEl = document.getElementById('demoModal');
     const modal = initModal(modalEl);
     document.getElementById('openModal').addEventListener('click', modal.open);
     modalEl.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', modal.close));
+    modalEl.addEventListener('click', (e) => { if (e.target === modalEl) modal.close(); });
 
     // Toasts
     document.getElementById('toastOk').addEventListener('click', () => toast('Saved successfully'));
     document.getElementById('toastErr').addEventListener('click', () => toast('Something went wrong', { polite: false }));
-
-    // Form validation (minimal demo)
-    const form = document.getElementById('demoForm');
-    const formErrors = document.getElementById('formErrors');
-    const errList = document.getElementById('errList');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const email = document.getElementById('email');
-      const emailErr = document.getElementById('email-error');
-      const valid = /\S+@\S+\.\S+/.test(email.value);
-      errList.innerHTML = '';
-      if (!valid) {
-        formErrors.hidden = false;
-        email.setAttribute('aria-invalid', 'true');
-        email.setAttribute('aria-describedby', 'email-error');
-        emailErr.hidden = false;
-        errList.innerHTML = `<li><a href="#email">Enter a valid email address</a></li>`;
-        formErrors.focus();
-      } else {
-        email.removeAttribute('aria-invalid');
-        email.removeAttribute('aria-describedby');
-        emailErr.hidden = true;
-        formErrors.hidden = true;
-        toast('Form submitted');
-      }
-    });
-
-    // Tooltip (basic show/hide on hover/focus)
-    const tipBtn = document.getElementById('tipBtn');
-    const tip = document.getElementById('tt1');
-    const showTip = () => tip.hidden = false;
-    const hideTip = () => tip.hidden = true;
-    tipBtn.addEventListener('focus', showTip);
-    tipBtn.addEventListener('blur', hideTip);
-    tipBtn.addEventListener('mouseenter', showTip);
-    tipBtn.addEventListener('mouseleave', hideTip);
-
-    // Ensure the module actually ran:
-    console.debug('RM demo booted');
-
-    // Close buttons are already wired; add overlay-click-to-close:
-    modalEl.addEventListener('click', (e) => {
-      // if you clicked the backdrop (the element with class="modal"), close it
-      if (e.target === modalEl) modal.close();
-    });
 
     // Skeleton → Data swap
     setTimeout(() => {
@@ -240,22 +210,47 @@
       densityBtn.textContent = `Density: ${densities[di]}`;
     });
 
-    // Dark mode toggle
-    const darkBtn = document.getElementById('darkToggle');
-    darkBtn.addEventListener('click', () => {
+    // Theme toggle (light → dark → auto)
+    (function themeController(){
+      const STORAGE_KEY = 'rm-theme';
+      const btn = document.getElementById('themeToggle');
       const root = document.documentElement;
-      const dark = root.getAttribute('data-theme') === 'dark';
-      if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
-    });
 
-    // Contrast verify (logs table in DevTools)
+      const getMode = () => root.getAttribute('data-theme') || 'auto';
+      const setMode = (mode) => {
+        if (mode === 'light' || mode === 'dark') {
+          root.setAttribute('data-theme', mode);
+          localStorage.setItem(STORAGE_KEY, mode);
+        } else {
+          root.removeAttribute('data-theme');       // auto (follow OS)
+          localStorage.setItem(STORAGE_KEY, 'auto');
+        }
+        reflect();
+      };
+      function reflect() {
+        const mode = getMode();
+        btn.setAttribute('aria-pressed', mode === 'dark');
+        btn.textContent = mode === 'auto' ? 'Theme: Auto' : `Theme: ${mode[0].toUpperCase() + mode.slice(1)}`;
+      }
+      btn.addEventListener('click', () => {
+        const next = { light:'dark', dark:'auto', auto:'light' }[getMode()];
+        setMode(next);
+      });
+      // Update label if OS theme changes while in Auto
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      mql.addEventListener?.('change', () => { if (getMode()==='auto') reflect(); });
+
+      reflect();
+    }());
+
+    // Contrast verify (optional; works if you load verify-contrast.js)
     document.getElementById('verifyBtn').addEventListener('click', () => {
       if (window.RM_A11Y?.verify) window.RM_A11Y.verify();
-      else console.info('Contrast verifier loads when verify-contrast.js is included.');
+      else console.info('Include ./ui/a11y/verify-contrast.js to use this button.');
     });
   </script>
 
-  <!-- Optional: include contrast verifier in dev -->
+  <!-- Optional: include the verifier in dev -->
   <script src="./ui/a11y/verify-contrast.js" defer></script>
 </body>
 </html>
