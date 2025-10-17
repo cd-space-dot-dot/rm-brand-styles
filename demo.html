@@ -248,9 +248,11 @@
       if (window.RM_A11Y?.verify) window.RM_A11Y.verify();
       else console.info('Include ./ui/a11y/verify-contrast.js to use this button.');
     });
+
+    document.getElementById('verifyBtn').addEventListener('click', () => {
+      verifyContrast();
+    });
   </script>
 
-  <!-- Optional: include the verifier in dev -->
-  <script src="./ui/a11y/verify-contrast.js" defer></script>
 </body>
 </html>
