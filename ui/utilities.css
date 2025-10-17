@@ -1,0 +1,16 @@
+/* Density scopes */
+.density--cozy{ --control-h:52px; --control-pad-x:16px; --stack-gap:calc(var(--unit)*3) }
+.density--comfortable{ --control-h:45px; --control-pad-x:12px; --stack-gap:calc(var(--unit)*2) }
+.density--compact{ --control-h:36px; --control-pad-x:10px; --stack-gap:calc(var(--unit)*1.5) }
+.btn,.input,.select,.textarea{ height:var(--control-h); padding-inline:var(--control-pad-x) }
+
+/* Container queries: name key shells you use */
+.modal-container,.editor-section,.template-section-row{ container-type:inline-size; container-name:shell }
+@container shell (min-width:1000px){ .template-controls-group{flex-direction:row;gap:12px} .action-section{flex-direction:row} }
+@container shell (max-width:999px) and (min-width:700px){ .template-controls-group{flex-wrap:wrap} .action-section{flex-wrap:wrap} }
+@container shell (max-width:699px){ .template-controls-group,.action-section{flex-direction:column;gap:8px} .btn{width:100%;justify-content:center} }
+
+/* Stacks & clusters */
+.stack-2 > * + *{ margin-top:calc(var(--unit)*1) }
+.stack-3 > * + *{ margin-top:calc(var(--unit)*1.5) }
+.cluster{ display:flex; flex-wrap:wrap; gap:calc(var(--unit)*1); align-items:center }
