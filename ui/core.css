@@ -1,11 +1,11 @@
-/* TYPOGRAPHY */
+/* ============== TYPOGRAPHY ============== */
 
-/* Base typography (makes everything sans-serif + consistent) */
+/* Base typography */
 html { font-family: var(--font-body); color: var(--text-primary); background: var(--bg-page); }
 body { margin: 0; font: inherit; }
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Ensure controls inherit the body font */
+/* Inherit font in form controls */
 button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Headings use display font */
@@ -15,36 +15,37 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 a { color: var(--link); text-underline-offset: 3px; }
 a:hover { color: var(--link-hover); }
 
-/* Makes h3 level and table and figure captions all-caps */
+/* All-caps for section/table heads */
 h3, .table caption, .table th{
-text-transform: uppercase;
-letter-spacing: var(--ls-caps);
-font-weight: var(--fw-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  font-weight: var(--fw-extrabold);
 }
 
-/* BUTTONS */
+/* ============== BUTTONS ============== */
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   height:var(--control-h); padding:0 var(--control-pad-x);
   border:1px solid var(--border-subtle); border-radius:var(--radius-s);
   background: var(--bg-surface); color: var(--text-primary);
-  box-shadow: var(--shadow-soft); transition: transform .02s ease, background .15s ease;
+  box-shadow: var(--shadow-soft);
+  transition: background .15s ease, transform .02s ease;
 }
-
-/* states */
-.btn:hover{ background: color-mix(in oklab, var(--bg-surface), var(--rm-dust) 10%); }
+.btn:hover{ background: var(--t-dust-12); }          /* opaque tint token */
 .btn:active{ transform: translateY(1px); }
+
 .btn--primary{
-  background: var(--rm-space); color: var(--rm-moon); border-color: var(--rm-space);
+  background: var(--rm-space);
+  color: var(--rm-moon);
+  border-color: var(--rm-space);
 }
-.btn--primary:hover{ background: color-mix(in oklab, var(--rm-space), var(--rm-infinite) 15%); }
+.btn--primary:hover{
+  filter: brightness(.95);                           /* robust hover without color-mix */
+}
 
-/* LINKS */
-a{ color: var(--link); text-underline-offset: 3px; }
-a:hover{ color: var(--link-hover); }
-body{ color: var(--text-primary); background: var(--bg-page); }
+/* ============== INPUTS ============== */
 
-/* INPUTS */
 label{ display:block; margin: 0 0 6px 0; font-weight:600; color:var(--text-primary); }
 .input, .select{
   width:100%; height:var(--control-h); padding:0 var(--control-pad-x);
@@ -52,44 +53,88 @@ label{ display:block; margin: 0 0 6px 0; font-weight:600; color:var(--text-prima
   background: var(--bg-surface); color: var(--text-primary);
   box-shadow: var(--shadow-soft);
 }
-.input:focus, .select:focus{ outline:2px solid var(--rm-galaxy); outline-offset:1px; border-color:var(--rm-galaxy); }
+.input:focus, .select:focus{
+  outline:2px solid var(--rm-galaxy);
+  outline-offset:1px;
+  border-color: var(--rm-galaxy);
+}
 
 /* Select caret breathing room */
 .select{ padding-right: calc(var(--control-pad-x) + 18px); }
 .select::-ms-expand{ display:none; } /* IE legacy */
 
-/* SURFACES */
-.surface{ background:var(--bg-surface); border:1px solid var(--border-subtle);
-  border-radius:var(--radius-1); box-shadow:var(--shadow-2) }
+/* ============== SURFACES/CARDS ============== */
 
-/* TABS (visuals; behavior in tabs.behavior.js) */
-.tabs{ display:flex; gap:0; border-bottom:1px solid var(--border-subtle) }
-.tab{
-  min-height:32px; padding:var(--sp-2) var(--sp-3);
-  font:500 var(--fs-sm)/1 var(--font-body); text-transform:uppercase;
-  border-left:4px solid transparent; color:var(--rm-space); opacity:.7; background:transparent; cursor:pointer;
-  transition:opacity var(--dur-1);
+.surface{
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-soft);
 }
-.tab:hover{ opacity:1; background:rgba(122,100,160,.1) }
-.tab.is-active{ background:var(--rm-galaxy); color:var(--rm-moon); border-left-color:var(--rm-galaxy); opacity:1 }
 
-/* STATUS BLOCKS */
+/* ============== TABS (visuals) ============== */
 
-/* alerts */
-.alert{ padding:var(--sp-3); border-left:4px solid; display:flex; gap:var(--sp-2) }
-.alert--warn{ background:rgba(208,167,50,.15); border-color:var(--warn); color:var(--rm-space) }
-.alert--error{ background:rgba(220,53,69,.10); border-color:var(--error); color:#721c24 }
-.alert--ok{ background:rgba(46,125,50,.12); border-color:var(--ok); color:#1b5e20 }
+.tabs{
+  display:flex;
+  gap: 8px;
+  padding: 6px 0;
+  background: transparent;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.tab{
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.tab:is(:hover,:focus-visible){
+  color: var(--text-primary);
+  background: var(--t-dust-12);
+  outline: none;
+}
+.tab.is-active{
+  background: var(--t-galaxy-12);
+  border-color: #B9A9DA; /* subtle galaxy edge */
+  color: var(--text-primary);
+}
 
-/* error and danger messages */
+/* ============== STATUS / ALERTS ============== */
+
+/* Use success/danger token set for AA contrast */
+.alert{
+  padding: var(--space-3);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--border-subtle);
+  display:flex; gap: var(--space-2);
+}
+
+.alert--ok{
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: var(--success-border);
+  font-weight: 600;
+}
+.alert--error{
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-border);
+  font-weight: 600;
+}
+
+/* Field-level errors */
 .field-error{ margin-top:6px; color: var(--danger-text); }
 .input[aria-invalid="true"], .select[aria-invalid="true"]{
-  border-color: var(--danger-border); outline-color: var(--danger-border);
+  border-color: var(--danger-border);
   box-shadow: inset 0 0 0 1px var(--danger-border);
 }
 .error-summary{
-  background: var(--danger-bg); border-left: 4px solid var(--danger-border);
-  padding: 12px; border-radius: var(--radius-m);
+  background: var(--danger-bg);
+  border-left: 4px solid var(--danger-border);
+  padding: 12px;
+  border-radius: var(--radius-m);
   color: var(--danger-text);
 }
-
