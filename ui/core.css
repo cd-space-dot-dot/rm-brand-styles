@@ -13,6 +13,11 @@
 }
 .btn--primary:hover{ background: color-mix(in oklab, var(--rm-space), var(--rm-infinite) 15%); }
 
+/* Links */
+a{ color: var(--link); text-underline-offset: 3px; }
+a:hover{ color: var(--link-hover); }
+body{ color: var(--text-primary); background: var(--bg-page); }
+
 /* Inputs */
 label{ display:block; margin: 0 0 6px 0; font-weight:600; color:var(--text-primary); }
 .input, .select{
