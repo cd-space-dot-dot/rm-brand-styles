@@ -1,23 +1,24 @@
 /* ui/dark.css */
 
 /* AUTO: follow OS only when there's NO manual override */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg-page:#0f1115; --bg-surface:#151821;
-    --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
+@media (prefers-color-scheme: dark){ :root:not([data-theme]) {
+  --bg-page:#0f1115; --bg-surface:#171a22E6; /* translucent vibe */
+  --text-primary:#EDEFF3; --text-secondary:#B7BECA;
+  --border-subtle:#30364a; --shadow-soft: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.35);
 
-    --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
-    --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115; --border-subtle:#30364a;
-  }
+  --success-bg:#12321A; --success-text:#CDECD2; --success-border:#245C34;
+  --danger-bg:#34161A;  --danger-text:#F1BCC2; --danger-border:#62323A;
+
+  --link:#BCA7E0; --link-hover:#A894D0; --link-visited:#A894D0;
+}}
+
+[data-theme="dark"]{
+    --bg-page:#0f1115; --bg-surface:#171a22E6; /* translucent vibe */
+  --text-primary:#EDEFF3; --text-secondary:#B7BECA;
+  --border-subtle:#30364a; --shadow-soft: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.35);
+
+  --success-bg:#12321A; --success-text:#CDECD2; --success-border:#245C34;
+  --danger-bg:#34161A;  --danger-text:#F1BCC2; --danger-border:#62323A;
+
+  --link:#BCA7E0; --link-hover:#A894D0; --link-visited:#A894D0;
 }
-
-/* EXPLICIT OVERRIDE: manual choice always wins */
-[data-theme="dark"] {
-  --bg-page:#0f1115; --bg-surface:#151821;
-  --text-primary:#F7F8F6; --text-secondary:#C9D1D9;
-  --rm-space:#C9D1D9; --rm-russell:#AEB8C8; --rm-galaxy:#A896CF; --rm-estrella:#E6C566;
-  --rm-infinite:#EAECEF; --rm-dust:#2a3142; --rm-moon:#0f1115; --border-subtle:#30364a;
-}
-
-/* Optional for symmetry (you can omit; light is already in :root via tokens.css) */
-[data-theme="light"] {}
