@@ -1,88 +1,51 @@
 /* ui/tokens.css */
+:root{
+  /* Fonts */
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+  --font-body:    system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
 
-:root {
-  /* === Base brand tones === */
-  --rm-infinite: #18191E;   /* near-black, never pure black */
-  --rm-moon: #F7F8F6;       /* near-white, never pure white */
+  /* Brand bases */
+  --rm-infinite:#18191E;    /* near-black */
+  --rm-moon:#F7F8F6;        /* near-white */
 
-  /* Color (Galaxy) accent ramp (light mode) */
-  --accent-50:  #F2ECF9;
-  --accent-100: #E8DEF7;
-  --accent-200: #D7CAF2;
-  --accent-300: #C2B1EA;
-  --accent-600: #7A64A0;
-  --accent-700: #5A4286;
-  --accent-on:  var(--rm-moon);
+  /* Text */
+  --text-primary: var(--rm-infinite);
+  --text-secondary:#4B5163;
 
+  /* Type scale */
+  --fs-xs:.75rem; --fs-sm:.875rem; --fs-md:1rem; --fs-lg:1.125rem; --fs-xl:1.25rem;
+
+  /* Spacing */
+  --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem;
+
+  /* Weights / letter spacing */
+  --fw-regular:400; --fw-semibold:600; --fw-bold:700; --fw-extrabold:800;
+  --ls-caps:.5px;
+
+  /* Links (light) */
+  --link:#5A4286; --link-hover:#4B386F;
+
+  /* Surfaces & borders (light) */
+  --bg-page:#F6F7F5;
+  --bg-surface:#FFFFFF;
+  --border-subtle:#CDD3DB;                    /* <- borders come from here */
+  --shadow-soft:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.06);
+
+  /* Radius / control size */
+  --radius-s:6px; --radius-m:8px;
+  --control-h:40px; --control-pad-x:14px;
+
+  /* Status (AA) */
+  --success-bg:#E6F4E6; --success-text:#134E13; --success-border:#96C49A;
+  --danger-bg:#FCE6E8;  --danger-text:#7E1E26;  --danger-border:#E7A3AB;
+
+  /* Accent ramp (light) for tasteful color */
+  --accent-50:#F2ECF9; --accent-100:#E8DEF7; --accent-200:#D7CAF2; --accent-300:#C2B1EA;
+  --accent-600:#7A64A0; --accent-700:#5A4286; --accent-on: var(--rm-moon);
   --accent-surface: var(--accent-100);
   --accent-border:  var(--accent-300);
   --accent-ink:     var(--accent-700);
-  }
 
-  /* === Text === */
-  --font-display: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-body:    "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --text-primary: var(--rm-infinite);
-  --text-secondary: #4B5163;
-  
-  /* === Font sizes (rem-based scale) === */
-  --fs-xs: .75rem;   /* 12px @16px root */
-  --fs-sm: .875rem;  /* 14px */
-  --fs-md: 1rem;     /* 16px */
-  --fs-lg: 1.125rem; /* 18px */
-  --fs-xl: 1.25rem;  /* 20px */
-
-  /* === Spacing scale === */
-  --space-1: .25rem;
-  --space-2: .5rem;
-  --space-3: .75rem;
-  --space-4: 1rem;
-
-  /* === Typography weights + letter spacing === */
-  --fw-regular: 400;
-  --fw-semibold: 600;
-  --fw-bold: 700;
-  --fw-extrabold: 800;
-
-  --ls-tight: 0;
-  --ls-caps: 0.5px; /* caps spacing */
-
-  /* === Links === */
-  --link: #5A4286;
-  --link-hover: #4B386F;
-  --link-visited: #4B386F;
-
-  /* === Status colors (AA contrast on light) === */
-  --success-bg: #E6F4E6;
-  --success-text: #134E13;
-  --success-border: #96C49A;
-
-  --danger-bg: #FCE6E8;
-  --danger-text: #7E1E26;
-  --danger-border: #E7A3AB;
-
-  /* === Surfaces & borders === */
-  --bg-page: var(--rm-moon);
-  --bg-surface: #FFFFFFF2; /* subtly “glassy”, not pure white */
-  --border-subtle: #DADFE6;
-  --shadow-soft: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
-
-  /* === Shape & sizing === */
-  --radius-m: 8px;
-  --radius-s: 6px;
-
-  /* === Controls (density defaults) === */
-  --control-h: 40px;      /* comfortable */
-  --control-pad-x: 14px;
-}
-
-/* Convenience component overrides (ok here for now) */
-.btn {
-  height: var(--control-h);
-  padding: 0 var(--control-pad-x);
-  font-size: var(--fs-sm);
-}
-
-.table tbody td {
-  padding: var(--space-3);
+  /* Neutral tint for hovers */
+  --t-dust-12:#EEF3F1;
 }

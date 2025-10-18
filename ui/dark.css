@@ -1,50 +1,17 @@
 /* ui/dark.css */
-
-/* AUTO: follow OS only when there's NO manual override */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg-page:#0f1115;
-    --bg-surface:#171a22E6; /* subtle glass */
-    --text-primary:#EDEFF3;
-    --text-secondary:#B7BECA;
+    --bg-page:#0F1115; --bg-surface:#171A22;
+    --text-primary:#EDEFF3; --text-secondary:#B7BECA;
+    --border-subtle:#30364A;
+    --shadow-soft:0 1px 2px rgba(0,0,0,.55),0 8px 24px rgba(0,0,0,.35);
 
-    --border-subtle:#30364a;
-    --shadow-soft: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.35);
-
-    /* Status */
-    --success-bg:#12321A;
-    --success-text:#CDECD2;
-    --success-border:#245C34;
-    --danger-bg:#34161A;
-    --danger-text:#F1BCC2;
-    --danger-border:#62323A;
-
-    /* Links */
-    --link:#BCA7E0;
-    --link-hover:#A894D0;
-    --link-visited:#A894D0;
+    /* Accent ramp (dark) */
+    --accent-50:#241F2B; --accent-100:#2E2837; --accent-200:#3A3250; --accent-300:#4D4070;
+    --accent-600:#BCA7E0; --accent-700:#A894D0; --accent-on:#0F1115;
+    --accent-surface: var(--accent-200);
+    --accent-border:  var(--accent-300);
+    --accent-ink:     var(--accent-600);
   }
 }
-
-/* EXPLICIT OVERRIDE: manual choice always wins */
-[data-theme="dark"] {
-  /* keep values identical to the block above */
-  --bg-page:#0f1115;
-  --bg-surface:#171a22E6;
-  --text-primary:#EDEFF3;
-  --text-secondary:#B7BECA;
-
-  --border-subtle:#30364a;
-  --shadow-soft: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.35);
-
-  --success-bg:#12321A;
-  --success-text:#CDECD2;
-  --success-border:#245C34;
-  --danger-bg:#34161A;
-  --danger-text:#F1BCC2;
-  --danger-border:#62323A;
-
-  --link:#BCA7E0;
-  --link-hover:#A894D0;
-  --link-visited:#A894D0;
-}
+[data-theme="dark"]{ /* duplicate exact values for manual override */ }
