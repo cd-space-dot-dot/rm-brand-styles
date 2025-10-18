@@ -1,9 +1,18 @@
+/* ui/rm-ui.entry.css */
+
+/* 1) Design contract (names + defaults) */
 @import "./tokens.css";
+
+/* 2) Base styles that rely on tokens */
 @import "./core.css";
 @import "./a11y.css";
 @import "./utilities.css";
+
+/* 3) Components (use only tokens; no hardcoded colors if possible) */
 @import "./components/table.css";
 @import "./components/toast.css";
 @import "./components/tooltip.css";
 @import "./components/skeleton.css";
-@import "./dark.css"; /* optional – keep last */
+
+/* 4) Theme overrides (redefines the same tokens); keep LAST */
+@import "./dark.css";
