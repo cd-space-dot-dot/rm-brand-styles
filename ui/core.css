@@ -1,3 +1,9 @@
+/* Typography */
+  /* Makes h3 level and table and figure captions all-caps */
+h3, .table caption, .table th{
+  text-transform: uppercase; letter-spacing: .5px; font-weight:800;
+}
+
 /* Buttons */
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
