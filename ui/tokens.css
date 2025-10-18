@@ -1,48 +1,37 @@
-:root {
-  /* Brand palette */
-  --rm-space:#2D334D; --rm-russell:#4D5C7B; --rm-galaxy:#7A64A0; --rm-estrella:#D0A732;
-  --rm-infinite:#18191E; --rm-dust:#DBE6E3; --rm-moon:#F7F8F6;
+:root{
+  /* Already present, reiterating intent */
+  --rm-infinite:#18191E;   /* near-black, never pure black */
+  --rm-moon:#F7F8F6;       /* near-white, never pure white */
 
-  /* Semantic roles */
-  --bg-page: var(--rm-moon);
-  --bg-surface: #fff;
+  /* New semantic text colors for consistent contrast */
   --text-primary: var(--rm-infinite);
-  --text-secondary: var(--rm-space);
-  --border-subtle: var(--rm-dust);
-  --brand: var(--rm-galaxy);
-  --link: var(--rm-galaxy);
+  --text-secondary: #4B5163;
 
-  /* States */
-  --ok:#2e7d32; --warn:var(--rm-estrella); --error:#dc3545;
+  /* Accent/link system (keeps your Galaxy tone but boosts contrast) */
+  --link: #5A4286;           /* richer galaxy for body links */
+  --link-hover: #4B386F;
+  --link-visited: #4B386F;
 
-  /* Typography */
-  --font-display:'Raleway',sans-serif; --font-body:'Roboto',sans-serif;
-  --fs-xxs:12px; --fs-xs:13px; --fs-sm:14px; --fs-md:16px; --fs-lg:20px;
-  --fs-xl:24px; --fs-2xl:32px; --fs-3xl:40px;
+  /* Status colors tuned for WCAG AA on both light/dark */
+  --success-bg: #E6F4E6;     /* light surface */
+  --success-text: #134E13;   /* readable dark green */
+  --success-border: #96C49A;
 
-  /* Spacing & radii */
-  --unit:8px; --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-6:24px; --sp-8:32px;
-  --radius-0:0; --radius-1:6px; --radius-2:12px;
+  --danger-bg: #FCE6E8;
+  --danger-text: #7E1E26;
+  --danger-border: #E7A3AB;
 
-  /* Shadows */
-  --shadow-0:none; --shadow-1:0 1px 2px rgba(0,0,0,.05); --shadow-2:0 4px 12px rgba(0,0,0,.08);
+  /* Surfaces & borders */
+  --bg-page: var(--rm-moon);
+  --bg-surface: #FFFFFFF2;   /* subtly “glassy”, not pure white */
+  --border-subtle:#DADFE6;   /* 1px hairline */
+  --shadow-soft: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
 
-  /* Motion */
-  --ease:cubic-bezier(.2,.7,.2,1); --dur-1:120ms; --dur-2:180ms; --dur-3:280ms;
+  /* Spacing & radii (keeps your square vibe but softens a touch) */
+  --radius-m: 8px;
+  --radius-s: 6px;
 
-  /* A11y core */
-  --focus-ring:2px solid var(--rm-galaxy);
-  --hit-min:24px; --hit-ideal:44px;
-
-  /* Density (default: comfortable) */
-  --control-h:45px; --control-pad-x:12px; --stack-gap:calc(var(--unit)*2);
-
-  /* Z-index */
-  --z-base:0; --z-sticky:10; --z-dropdown:1000; --z-modal:1100; --z-toast:1200;
+  /* Density paddings (used below) */
+  --control-h: 40px;         /* comfortable */
+  --control-pad-x: 14px;
 }
-
-/* Base */
-*{box-sizing:border-box}
-body{margin:0;color:var(--text-primary);background:var(--bg-page);font:400 var(--fs-md)/1.5 var(--font-body)}
-a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
-:focus-visible{outline:var(--focus-ring);outline-offset:2px}
