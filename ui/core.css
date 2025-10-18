@@ -1,17 +1,17 @@
 /* Buttons */
 .btn{
-  --bg:transparent; --fg:var(--rm-space); --bd:transparent;
-  display:inline-flex; align-items:center; gap:var(--sp-2);
+  display:inline-flex; align-items:center; justify-content:center;
   height:var(--control-h); padding:0 var(--control-pad-x);
-  font:700 var(--fs-sm)/1 var(--font-display); letter-spacing:.5px; text-transform:uppercase;
-  color:var(--fg); background:var(--bg); border:1px solid var(--bd); border-radius:var(--radius-0);
-  transition:background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+  border:1px solid var(--border-subtle); border-radius:var(--radius-s);
+  background: var(--bg-surface); color: var(--text-primary);
+  box-shadow: var(--shadow-soft); transition: transform .02s ease, background .15s ease;
 }
-.btn:hover{ background:rgba(122,100,160,.08); color:#5A4286 }
-.btn[disabled]{ opacity:.5; cursor:not-allowed }
-.btn--primary{ --bg:var(--rm-space); --fg:var(--rm-moon); --bd:var(--rm-space) }
-.btn--primary:hover{ --bg:var(--rm-infinite); --bd:var(--rm-infinite) }
-.btn--accent{ --bg:var(--rm-galaxy); --fg:var(--rm-moon); --bd:var(--rm-galaxy) }
+.btn:hover{ background: color-mix(in oklab, var(--bg-surface), var(--rm-dust) 10%); }
+.btn:active{ transform: translateY(1px); }
+.btn--primary{
+  background: var(--rm-space); color: var(--rm-moon); border-color: var(--rm-space);
+}
+.btn--primary:hover{ background: color-mix(in oklab, var(--rm-space), var(--rm-infinite) 15%); }
 
 /* Inputs */
 .input,.select,.textarea{
