@@ -1,46 +1,72 @@
-:root{
-  /* Already present, reiterating intent */
-  --rm-infinite:#18191E;   /* near-black, never pure black */
-  --rm-moon:#F7F8F6;       /* near-white, never pure white */
+/* ui/tokens.css */
 
-  /* New semantic text colors for consistent contrast */
+:root {
+  /* === Base brand tones === */
+  --rm-infinite: #18191E;   /* near-black, never pure black */
+  --rm-moon: #F7F8F6;       /* near-white, never pure white */
+
+  /* === Text === */
   --text-primary: var(--rm-infinite);
   --text-secondary: #4B5163;
 
-  /* typography for h3 and table and figure headers */
+  /* === Font sizes (rem-based scale) === */
+  --fs-xs: .75rem;   /* 12px @16px root */
+  --fs-sm: .875rem;  /* 14px */
+  --fs-md: 1rem;     /* 16px */
+  --fs-lg: 1.125rem; /* 18px */
+  --fs-xl: 1.25rem;  /* 20px */
+
+  /* === Spacing scale === */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+
+  /* === Typography weights + letter spacing === */
   --fw-regular: 400;
   --fw-semibold: 600;
   --fw-bold: 700;
   --fw-extrabold: 800;
 
   --ls-tight: 0;
-  --ls-caps: 0.5px;          /* caps spacing */
+  --ls-caps: 0.5px; /* caps spacing */
 
-  /* Accent/link system (keeps your Galaxy tone but boosts contrast) */
-  --link: #5A4286;           /* richer galaxy for body links */
+  /* === Links === */
+  --link: #5A4286;
   --link-hover: #4B386F;
   --link-visited: #4B386F;
 
-  /* Status colors tuned for WCAG AA on both light/dark */
-  --success-bg: #E6F4E6;     /* light surface */
-  --success-text: #134E13;   /* readable dark green */
+  /* === Status colors (AA contrast on light) === */
+  --success-bg: #E6F4E6;
+  --success-text: #134E13;
   --success-border: #96C49A;
 
   --danger-bg: #FCE6E8;
   --danger-text: #7E1E26;
   --danger-border: #E7A3AB;
 
-  /* Surfaces & borders */
+  /* === Surfaces & borders === */
   --bg-page: var(--rm-moon);
-  --bg-surface: #FFFFFFF2;   /* subtly “glassy”, not pure white */
-  --border-subtle:#DADFE6;   /* 1px hairline */
+  --bg-surface: #FFFFFFF2; /* subtly “glassy”, not pure white */
+  --border-subtle: #DADFE6;
   --shadow-soft: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
 
-  /* Spacing & radii (keeps your square vibe but softens a touch) */
+  /* === Shape & sizing === */
   --radius-m: 8px;
   --radius-s: 6px;
 
-  /* Density paddings (used below) */
-  --control-h: 40px;         /* comfortable */
+  /* === Controls (density defaults) === */
+  --control-h: 40px;      /* comfortable */
   --control-pad-x: 14px;
+}
+
+/* Convenience component overrides (ok here for now) */
+.btn {
+  height: var(--control-h);
+  padding: 0 var(--control-pad-x);
+  font-size: var(--fs-sm);
+}
+
+.table tbody td {
+  padding: var(--space-3);
 }
