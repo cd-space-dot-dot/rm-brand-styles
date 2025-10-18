@@ -1,3 +1,5 @@
+/* rm-css/ui/utilities.css */
+
 /* Density scopes */
 body.density--comfortable{ --control-h:40px; --control-pad-x:14px; }
 body.density--compact{ --control-h:36px; --control-pad-x:12px; }
@@ -11,6 +13,6 @@ body.density--cozy{ --control-h:44px; --control-pad-x:16px; }
 @container shell (max-width:699px){ .template-controls-group,.action-section{flex-direction:column;gap:8px} .btn{width:100%;justify-content:center} }
 
 /* Stacks & clusters */
-.stack-2 > * + *{ margin-top:calc(var(--unit)*1) }
-.stack-3 > * + *{ margin-top:calc(var(--unit)*1.5) }
-.cluster{ display:flex; flex-wrap:wrap; gap:calc(var(--unit)*1); align-items:center }
+.stack-2 > * + * { margin-top:8px; }
+.stack-3 > * + * { margin-top:16px; }
+.cluster{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
