@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>RM UI – Demo (No Modal)</title>
+  <title>RM UI – Demo</title>
   <link rel="icon" href="data:,"><!-- silence favicon 404 -->
 
   <!-- Boot theme BEFORE paint (SSR/Next-friendly) -->
@@ -17,7 +17,7 @@
         } else {
           document.documentElement.removeAttribute('data-theme'); // auto (follow OS)
         }
-      } catch (e) { /* storage blocked? fall back to auto */ }
+      } catch (e) {}
     }());
   </script>
 
