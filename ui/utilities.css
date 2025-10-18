@@ -1,7 +1,7 @@
 /* Density scopes */
-.density--cozy{ --control-h:52px; --control-pad-x:16px; --stack-gap:calc(var(--unit)*3) }
-.density--comfortable{ --control-h:45px; --control-pad-x:12px; --stack-gap:calc(var(--unit)*2) }
-.density--compact{ --control-h:36px; --control-pad-x:10px; --stack-gap:calc(var(--unit)*1.5) }
+body.density--comfortable{ --control-h:40px; --control-pad-x:14px; }
+body.density--compact{ --control-h:36px; --control-pad-x:12px; }
+body.density--cozy{ --control-h:44px; --control-pad-x:16px; }
 .btn,.input,.select,.textarea{ height:var(--control-h); padding-inline:var(--control-pad-x) }
 
 /* Container queries: name key shells you use */
