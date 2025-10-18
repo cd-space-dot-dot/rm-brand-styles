@@ -6,18 +6,17 @@
   border-collapse:separate;
   border-spacing:0;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-m);
-  overflow:hidden; /* rounds thead corners */
+  border:1px solid var(--border-subtle);
+  border-radius:10px; overflow:hidden; /* rounds thead corners */
 }
 
 /* Head */
 .table thead th{
   text-align:left;
   padding:10px 12px;
-  background: color-mix(in oklab, var(--rm-dust), var(--bg-surface) 35%);
-  border-bottom:1px solid var(--border-subtle);
-  text-transform: uppercase;
+  background: var(--accent-50);
+  border-bottom:1px solid var(--accent-border);
+  text-transform: uppercase; 
   letter-spacing: var(--ls-caps);
   font-weight: var(--fw-extrabold);
 }
@@ -29,7 +28,7 @@
 }
 
 .table tbody tr:nth-child(even){
-  background: color-mix(in oklab, var(--bg-surface), var(--rm-dust) 16%);
+  background: var(--accent-50);
 }
 
 /* Caption aligns with brand secondary text */
@@ -37,6 +36,11 @@
   text-align:left;
   padding:8px 12px 6px;
   color: var(--text-secondary);
+}
+
+/* Row hover */
+@media (hover:hover){
+  .table tbody tr:hover td{ background: var(--accent-100); }
 }
 
 /* Chips: keep both classnames for compatibility */
