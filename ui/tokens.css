@@ -5,6 +5,20 @@
   --rm-infinite: #18191E;   /* near-black, never pure black */
   --rm-moon: #F7F8F6;       /* near-white, never pure white */
 
+  /* Color (Galaxy) accent ramp (light mode) */
+  --accent-50:  #F2ECF9;
+  --accent-100: #E8DEF7;
+  --accent-200: #D7CAF2;
+  --accent-300: #C2B1EA;
+  --accent-600: #7A64A0;
+  --accent-700: #5A4286;
+  --accent-on:  var(--rm-moon);
+
+  --accent-surface: var(--accent-100);
+  --accent-border:  var(--accent-300);
+  --accent-ink:     var(--accent-700);
+  }
+
   /* === Text === */
   --font-display: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-body:    "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
