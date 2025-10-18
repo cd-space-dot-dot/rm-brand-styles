@@ -1,0 +1,12 @@
+.tabs{ display:flex; gap:8px; padding:6px; background:transparent; }
+.tab{
+  height:32px; padding:0 12px; border-radius:var(--radius-s);
+  border:1px solid var(--border-subtle);
+  background:transparent; color:var(--text-secondary);
+  font-weight:600; letter-spacing:.2px;
+}
+.tab.is-active{
+  background: color-mix(in oklab, var(--rm-galaxy), var(--bg-surface) 82%);
+  color: var(--text-primary); border-color: color-mix(in oklab, var(--rm-galaxy), black 8%);
+}
+.tab:focus-visible{ outline:2px solid var(--rm-galaxy); outline-offset:2px; }
