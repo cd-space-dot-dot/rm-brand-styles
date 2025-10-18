@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>RM UI – Demo</title>
+  <title>RM UI – Demo (No Modal)</title>
+  <link rel="icon" href="data:,"><!-- silence favicon 404 -->
 
   <!-- Boot theme BEFORE paint (SSR/Next-friendly) -->
   <script>
@@ -49,7 +50,6 @@
         <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Toggle theme">Theme: Auto</button>
         <button id="densityToggle" class="btn">Density: comfortable</button>
         <button id="verifyBtn" class="btn">Verify Contrast</button>
-        <button id="forceOpenModal" class="btn">Open Demo Modal</button>
       </div>
     </header>
 
@@ -78,7 +78,7 @@
       </section>
 
       <div class="grid">
-        <!-- Forms + Toasts -->
+        <!-- Form + Toasts -->
         <section class="demo-section surface card">
           <h2>Form</h2>
           <p class="muted">Visible labels; error summary jumps focus; live toasts for feedback.</p>
@@ -107,7 +107,6 @@
               <button type="submit" class="btn btn--primary">Submit</button>
               <button type="button" id="toastOk" class="btn">Toast OK</button>
               <button type="button" id="toastErr" class="btn">Toast Error</button>
-              <button type="button" id="openModal" class="btn">Open Modal</button>
             </div>
           </form>
         </section>
@@ -156,63 +155,55 @@
     </footer>
   </div>
 
-  <!-- Modal -->
-  <div id="demoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
-    <div class="modal__panel stack-3" aria-describedby="m-desc">
-      <div class="cluster"><h3 id="m-title" style="margin:0">Settings</h3><span class="muted" id="m-desc">Update preferences</span></div>
-      <div class="stack-2">
-        <label for="name">Name</label>
-        <input id="name" class="input" placeholder="Your name" />
-      </div>
-      <div class="cluster" style="justify-content:flex-end">
-        <button data-close class="btn">Close</button>
-        <button data-close class="btn btn--primary">Save</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast region -->
   <div class="rm-toasts" aria-live="polite" aria-atomic="true"></div>
 
-  <script>
-  // Fail-safe: wire up close & backdrop-click even if modules didn't run.
-  (function () {
-    var modalEl = document.getElementById('demoModal');
-    if (!modalEl) return;
-
-    // Close buttons
-    modalEl.querySelectorAll('[data-close]').forEach(function (btn) {
-      btn.addEventListener('click', function () { modalEl.hidden = true; });
-    });
-
-    // Backdrop click
-    modalEl.addEventListener('click', function (e) {
-      if (e.target === modalEl) modalEl.hidden = true;
-    });
-
-    // Optional: a visible "Open Demo Modal" button at the top of the page
-    var force = document.getElementById('forceOpenModal');
-    if (force) force.addEventListener('click', function () { modalEl.hidden = false; });
-  }());
-  </script>
-
   <!-- App wiring -->
   <script type="module">
-    import { initModal, initTabs, toast, verifyContrast } from './ui/rm-ui.entry.js';
+    import { initTabs, toast, verifyContrast } from './ui/rm-ui.entry.js';
 
     // Tabs
     initTabs(document.getElementById('demoTabs'));
 
-    // Modal (+ overlay click to close)
-    const modalEl = document.getElementById('demoModal');
-    const modal = initModal(modalEl);
-    document.getElementById('openModal').addEventListener('click', modal.open);
-    modalEl.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', modal.close));
-    modalEl.addEventListener('click', (e) => { if (e.target === modalEl) modal.close(); });
-
     // Toasts
     document.getElementById('toastOk').addEventListener('click', () => toast('Saved successfully'));
     document.getElementById('toastErr').addEventListener('click', () => toast('Something went wrong', { polite: false }));
+
+    // Form validation (minimal)
+    const form = document.getElementById('demoForm');
+    const formErrors = document.getElementById('formErrors');
+    const errList = document.getElementById('errList');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('email');
+      const emailErr = document.getElementById('email-error');
+      const valid = /\S+@\S+\.\S+/.test(email.value);
+      errList.innerHTML = '';
+      if (!valid) {
+        formErrors.hidden = false;
+        email.setAttribute('aria-invalid', 'true');
+        email.setAttribute('aria-describedby', 'email-error');
+        emailErr.hidden = false;
+        errList.innerHTML = `<li><a href="#email">Enter a valid email address</a></li>`;
+        formErrors.focus();
+      } else {
+        email.removeAttribute('aria-invalid');
+        email.removeAttribute('aria-describedby');
+        emailErr.hidden = true;
+        formErrors.hidden = true;
+        toast('Form submitted');
+      }
+    });
+
+    // Tooltip (hover/focus show/hide)
+    const tipBtn = document.getElementById('tipBtn');
+    const tip = document.getElementById('tt1');
+    const showTip = () => tip.hidden = false;
+    const hideTip = () => tip.hidden = true;
+    tipBtn.addEventListener('focus', showTip);
+    tipBtn.addEventListener('blur', hideTip);
+    tipBtn.addEventListener('mouseenter', showTip);
+    tipBtn.addEventListener('mouseleave', hideTip);
 
     // Skeleton → Data swap
     setTimeout(() => {
@@ -259,23 +250,15 @@
         const next = { light:'dark', dark:'auto', auto:'light' }[getMode()];
         setMode(next);
       });
-      // Update label if OS theme changes while in Auto
       const mql = window.matchMedia('(prefers-color-scheme: dark)');
       mql.addEventListener?.('change', () => { if (getMode()==='auto') reflect(); });
-
       reflect();
     }());
 
-    // Contrast verify (optional; works if you load verify-contrast.js)
+    // Contrast verify
     document.getElementById('verifyBtn').addEventListener('click', () => {
-      if (window.RM_A11Y?.verify) window.RM_A11Y.verify();
-      else console.info('Include ./ui/a11y/verify-contrast.js to use this button.');
-    });
-
-    document.getElementById('verifyBtn').addEventListener('click', () => {
-      verifyContrast();
+      verifyContrast?.();
     });
   </script>
-
 </body>
 </html>
