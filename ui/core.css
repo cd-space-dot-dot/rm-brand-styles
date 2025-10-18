@@ -29,6 +29,7 @@ h3, .table caption, .table th{
   height:var(--control-h); padding:0 var(--control-pad-x);
   border:1px solid var(--border-subtle); border-radius:var(--radius-s);
   background: var(--bg-surface); color: var(--text-primary);
+  font-weight: 600;
   box-shadow: var(--shadow-soft);
   transition: background .15s ease, transform .02s ease;
 }
