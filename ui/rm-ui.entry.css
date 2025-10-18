@@ -2,7 +2,6 @@
 @import "./core.css";
 @import "./a11y.css";
 @import "./utilities.css";
-@import "./components/modal.css";
 @import "./components/table.css";
 @import "./components/toast.css";
 @import "./components/tooltip.css";
