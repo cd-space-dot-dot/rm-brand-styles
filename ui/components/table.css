@@ -1,11 +1,62 @@
-.table{ width:100%; border-collapse:collapse; background:var(--bg-surface); border:1px solid var(--rm-space) }
-.table th,.table td{ padding:10px 12px; text-align:left; border-top:1px solid var(--rm-space) }
-.table th{ font:700 var(--fs-sm)/1 var(--font-display); background:var(--rm-dust) }
-.table tr:nth-child(even) td{ background:var(--rm-moon) }
-.table caption{ text-align:left; padding:8px 0; color:var(--text-secondary) }
+/* ui/components/table.css */
 
-.pill,.badge{
-  display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px;
-  background:var(--rm-galaxy); color:var(--rm-moon); border:1px solid transparent;
-  font:600 var(--fs-xs)/1 var(--font-body); text-transform:uppercase; letter-spacing:.3px;
+/* Table shell */
+.table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-m);
+  overflow:hidden; /* rounds thead corners */
 }
+
+/* Head */
+.table thead th{
+  text-align:left;
+  padding:10px 12px;
+  background: color-mix(in oklab, var(--rm-dust), var(--bg-surface) 35%);
+  border-bottom:1px solid var(--border-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  font-weight: var(--fw-extrabold);
+}
+
+/* Body */
+.table tbody td{
+  padding:12px;
+  border-bottom:1px solid var(--border-subtle);
+}
+
+.table tbody tr:nth-child(even){
+  background: color-mix(in oklab, var(--bg-surface), var(--rm-dust) 16%);
+}
+
+/* Caption aligns with brand secondary text */
+.table caption{
+  text-align:left;
+  padding:8px 12px 6px;
+  color: var(--text-secondary);
+}
+
+/* Chips: keep both classnames for compatibility */
+.pill,
+.badge{
+  display:inline-flex;
+  align-items:center;
+  height:24px;
+  padding:0 10px;
+  border-radius:999px;
+  background: color-mix(in oklab, var(--rm-galaxy), var(--bg-surface) 8%);
+  color: var(--rm-moon);
+  border: 1px solid transparent;
+  font-weight: var(--fw-bold);
+  font-size: 12px;           /* can be tokenized later as --fs-xs */
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+/* Optional status variants */
+.badge--new   { background: color-mix(in oklab, #B3A0F0, var(--bg-surface) 8%); }
+.badge--ready { background: color-mix(in oklab, #98D8A6, var(--bg-surface) 8%); }
+.badge--warn  { background: color-mix(in oklab, #F4C38A, var(--bg-surface) 8%); }
