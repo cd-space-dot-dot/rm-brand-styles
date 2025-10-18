@@ -7,6 +7,15 @@
   --text-primary: var(--rm-infinite);
   --text-secondary: #4B5163;
 
+  /* typography for h3 and table and figure headers */
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --ls-tight: 0;
+  --ls-caps: 0.5px;          /* caps spacing */
+
   /* Accent/link system (keeps your Galaxy tone but boosts contrast) */
   --link: #5A4286;           /* richer galaxy for body links */
   --link-hover: #4B386F;
