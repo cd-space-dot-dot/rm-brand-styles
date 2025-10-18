@@ -6,8 +6,8 @@
   --rm-moon: #F7F8F6;       /* near-white, never pure white */
 
   /* === Text === */
-  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
-  --font-body:    system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+  --font-display: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body:    "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --text-primary: var(--rm-infinite);
   --text-secondary: #4B5163;
   
