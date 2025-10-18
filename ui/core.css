@@ -14,12 +14,18 @@
 .btn--primary:hover{ background: color-mix(in oklab, var(--rm-space), var(--rm-infinite) 15%); }
 
 /* Inputs */
-.input,.select,.textarea{
-  height:var(--control-h); background:var(--rm-moon); color:var(--text-primary);
-  border:1px solid var(--rm-space); border-radius:var(--radius-0);
-  padding:0 var(--control-pad-x); font:500 var(--fs-md)/1.2 var(--font-body);
+label{ display:block; margin: 0 0 6px 0; font-weight:600; color:var(--text-primary); }
+.input, .select{
+  width:100%; height:var(--control-h); padding:0 var(--control-pad-x);
+  border:1px solid var(--border-subtle); border-radius:var(--radius-m);
+  background: var(--bg-surface); color: var(--text-primary);
+  box-shadow: var(--shadow-soft);
 }
-.input:focus,.select:focus,.textarea:focus{ outline:var(--focus-ring); border-color:var(--rm-galaxy) }
+.input:focus, .select:focus{ outline:2px solid var(--rm-galaxy); outline-offset:1px; border-color:var(--rm-galaxy); }
+
+/* Select caret breathing room */
+.select{ padding-right: calc(var(--control-pad-x) + 18px); }
+.select::-ms-expand{ display:none; } /* IE legacy */
 
 /* Surfaces */
 .surface{ background:var(--bg-surface); border:1px solid var(--border-subtle);
