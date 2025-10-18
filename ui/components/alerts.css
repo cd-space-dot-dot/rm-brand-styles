@@ -1,0 +1,11 @@
+/* rm-css/ui/components.alerts.css */ 
+
+.alert{
+  padding:12px 14px; border-radius:var(--radius-m); border:1px solid var(--border-subtle);
+  background: var(--bg-surface); color: var(--text-primary);
+}
+.alert--ok{
+  background: var(--success-bg); color: var(--success-text);
+  border: 1px solid var(--success-border);
+  font-weight:600;
+}
