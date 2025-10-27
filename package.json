@@ -1,6 +1,6 @@
 {
   "name": "@russell-marketing/brand-styles",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Russell Marketing design system - tokens, components, and accessibility utilities",
   "type": "module",
   "main": "ui/rm-ui.entry.js",
@@ -30,7 +30,7 @@
   ],
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "@mui/material": "^5.0.0 || ^6.0.0"
+    "@mui/material": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
