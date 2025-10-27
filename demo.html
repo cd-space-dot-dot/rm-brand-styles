@@ -82,6 +82,50 @@
         </section>
       </section>
 
+      <!-- Sliders -->
+      <section class="demo-section surface card">
+        <h2>Sliders</h2>
+        <p class="muted">Range controls with integrated labels. Label and slider are grouped as a single unit.</p>
+
+        <div class="grid">
+          <div class="slider-group">
+            <label class="slider-group__label" for="amountSlider">Amount Raised</label>
+            <input
+              type="range"
+              id="amountSlider"
+              class="slider-group__slider"
+              min="0"
+              max="10000000"
+              step="50000"
+              value="5000000"
+            />
+            <div class="slider-group__values">
+              <span>$0</span>
+              <span id="amountValue">$5,000,000</span>
+              <span>$10M</span>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <label class="slider-group__label" for="backerSlider"># Backers</label>
+            <input
+              type="range"
+              id="backerSlider"
+              class="slider-group__slider"
+              min="0"
+              max="100000"
+              step="250"
+              value="50000"
+            />
+            <div class="slider-group__values">
+              <span>0</span>
+              <span id="backerValue">50,000</span>
+              <span>100,000</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="grid">
         <!-- Form + Toasts -->
         <section class="demo-section surface card">
@@ -263,6 +307,22 @@
     // Contrast verify
     document.getElementById('verifyBtn').addEventListener('click', () => {
       verifyContrast?.();
+    });
+
+    // Slider value updates
+    const amountSlider = document.getElementById('amountSlider');
+    const amountValue = document.getElementById('amountValue');
+    const backerSlider = document.getElementById('backerSlider');
+    const backerValue = document.getElementById('backerValue');
+
+    amountSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value);
+      amountValue.textContent = `$${(val / 1000000).toFixed(1)}M`;
+    });
+
+    backerSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value);
+      backerValue.textContent = val.toLocaleString();
     });
   </script>
 </body>

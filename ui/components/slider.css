@@ -1,0 +1,122 @@
+/* Slider with integrated label-slider grouping */
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--slider-label-gap);
+  padding-left: var(--slider-container-padding);
+  padding-right: var(--slider-container-padding);
+}
+
+.slider-group__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.slider-group__slider {
+  position: relative;
+  width: 100%;
+  height: var(--slider-track-height);
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+}
+
+/* Track styling */
+.slider-group__slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--slider-track-height);
+  background: var(--border-subtle);
+  border-radius: calc(var(--slider-track-height) / 2);
+}
+
+.slider-group__slider::-moz-range-track {
+  width: 100%;
+  height: var(--slider-track-height);
+  background: var(--border-subtle);
+  border-radius: calc(var(--slider-track-height) / 2);
+}
+
+/* Thumb styling */
+.slider-group__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  background: var(--rm-galaxy);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: calc((var(--slider-thumb-size) - var(--slider-track-height)) / -2);
+  transition: box-shadow 150ms ease;
+}
+
+.slider-group__slider::-moz-range-thumb {
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  background: var(--rm-galaxy);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: box-shadow 150ms ease;
+}
+
+/* Hover states */
+.slider-group__slider:hover::-webkit-slider-thumb {
+  box-shadow: 0 0 0 8px rgba(122, 100, 160, 0.16);
+}
+
+.slider-group__slider:hover::-moz-range-thumb {
+  box-shadow: 0 0 0 8px rgba(122, 100, 160, 0.16);
+}
+
+/* Focus states */
+.slider-group__slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 12px rgba(122, 100, 160, 0.24);
+}
+
+.slider-group__slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 12px rgba(122, 100, 160, 0.24);
+}
+
+/* Range values display */
+.slider-group__values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+/* For double-thumb range sliders (requires JS) */
+.slider-group--range {
+  position: relative;
+}
+
+.slider-group--range .slider-group__slider {
+  position: absolute;
+  pointer-events: none;
+}
+
+.slider-group--range .slider-group__slider::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+
+.slider-group--range .slider-group__slider::-moz-range-thumb {
+  pointer-events: auto;
+}
+
+/* Disabled state */
+.slider-group__slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slider-group__slider:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+
+.slider-group__slider:disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}

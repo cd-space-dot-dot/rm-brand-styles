@@ -1,12 +1,16 @@
 /* ui/tokens.css */
 :root{
-  /* Fonts */
-  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
-  --font-body:    system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+  /* Fonts - Russell Marketing Brand */
+  --font-display: "Raleway", "Roboto", sans-serif;
+  --font-body:    "Roboto", "Segoe UI", -apple-system, system-ui, sans-serif;
 
   /* Brand bases */
   --rm-infinite:#18191E;    /* near-black */
   --rm-moon:#F7F8F6;        /* near-white */
+  --rm-space:#2D334D;       /* dark blue-gray for headers/emphasis */
+  --rm-galaxy:#7A64A0;      /* primary purple accent */
+  --rm-dust:#DBE6E3;        /* light sage for subtle backgrounds */
+  --rm-estrella:#E0C169;    /* warm gold tint */
 
   /* Text */
   --text-primary: var(--rm-infinite);
@@ -17,6 +21,13 @@
 
   /* Spacing */
   --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem;
+  --space-6:1.5rem; --space-8:2rem;
+
+  /* Component spacing */
+  --slider-label-gap:1.5rem;
+  --slider-thumb-size:20px;
+  --slider-track-height:8px;
+  --slider-container-padding:2rem;
 
   /* Weights / letter spacing */
   --fw-regular:400; --fw-semibold:600; --fw-bold:700; --fw-extrabold:800;

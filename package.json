@@ -1,0 +1,64 @@
+{
+  "name": "@russell-marketing/brand-styles",
+  "version": "0.1.0",
+  "description": "Russell Marketing design system - tokens, components, and accessibility utilities",
+  "type": "module",
+  "main": "ui/rm-ui.entry.js",
+  "style": "ui/rm-ui.entry.css",
+  "exports": {
+    ".": {
+      "import": "./ui/rm-ui.entry.js",
+      "default": "./ui/rm-ui.entry.js"
+    },
+    "./styles": "./ui/rm-ui.entry.css",
+    "./tokens": "./ui/tokens.css",
+    "./tokens.js": "./ui/tokens.js",
+    "./core": "./ui/core.css",
+    "./dark": "./ui/dark.css",
+    "./utilities": "./ui/utilities.css",
+    "./a11y": "./ui/a11y.css",
+    "./components/*": "./ui/components/*.css",
+    "./adapters/mui-theme": "./adapters/mui-theme.js",
+    "./react/SliderWithLabel": "./components/react/SliderWithLabel.jsx"
+  },
+  "files": [
+    "ui/**/*",
+    "adapters/**/*",
+    "components/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "@mui/material": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "design-system",
+    "css",
+    "design-tokens",
+    "accessibility",
+    "russell-marketing"
+  ],
+  "author": "Russell Marketing",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cd-space-dot-dot/rm-brand-styles.git"
+  },
+  "scripts": {
+    "dev": "npx http-server -p 3000 -o demo.html",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
