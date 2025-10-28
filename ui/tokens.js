@@ -147,6 +147,25 @@ export const tokens = {
     },
   },
 
+  // Score colors (for opportunity scores, ratings, etc.)
+  scores: {
+    high: {
+      bg: '#E6F4E6',
+      text: '#134E13',
+      border: '#96C49A',
+    },
+    medium: {
+      bg: '#FFF4E6',
+      text: '#7A4900',
+      border: '#FFD699',
+    },
+    low: {
+      bg: '#FCE6E8',
+      text: '#7E1E26',
+      border: '#E7A3AB',
+    },
+  },
+
   // Accent ramp (light mode)
   accent: {
     50: '#F2ECF9',
