@@ -14,11 +14,13 @@
 .table thead th{
   text-align:left;
   padding:10px 12px;
-  background: var(--accent-50);
-  border-bottom:1px solid var(--accent-border);
-  text-transform: uppercase; 
+  background: var(--rm-space);
+  color: var(--rm-moon);
+  border-bottom: 2px solid var(--rm-galaxy);
+  text-transform: uppercase;
   letter-spacing: var(--ls-caps);
   font-weight: var(--fw-extrabold);
+  font-family: var(--font-display);
 }
 
 /* Body */
@@ -28,7 +30,7 @@
 }
 
 .table tbody tr:nth-child(even){
-  background: var(--accent-50);
+  background: rgba(219, 230, 227, 0.3); /* RM Dust at 30% */
 }
 
 /* Caption aligns with brand secondary text */
@@ -40,7 +42,10 @@
 
 /* Row hover */
 @media (hover:hover){
-  .table tbody tr:hover td{ background: var(--accent-100); }
+  .table tbody tr:hover td{
+    background: rgba(224, 193, 105, 0.2); /* RM Estrella at 20% */
+    transition: background-color 0.2s ease;
+  }
 }
 
 /* Chips: keep both classnames for compatibility */
