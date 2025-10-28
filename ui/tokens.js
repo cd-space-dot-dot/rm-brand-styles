@@ -6,6 +6,7 @@ export const tokens = {
   fonts: {
     display: '"Raleway", "Roboto", sans-serif',
     body: '"Roboto", "Segoe UI", -apple-system, system-ui, sans-serif',
+    mono: '"Roboto Mono", "Courier New", monospace',
   },
 
   // Brand base colors

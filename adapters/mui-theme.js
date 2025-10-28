@@ -113,6 +113,11 @@ export function getRMThemeConfig() {
         fontSize: tokens.fontSize.xs,
         fontWeight: tokens.fontWeight.regular,
       },
+      code: {
+        fontFamily: tokens.fonts.mono,
+        fontSize: tokens.fontSize.sm,
+        fontWeight: tokens.fontWeight.regular,
+      },
     },
 
     shape: {
