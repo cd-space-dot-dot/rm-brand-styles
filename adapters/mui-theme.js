@@ -379,6 +379,62 @@ export function getRMThemeConfig() {
         },
       },
 
+      // DataGrid - matches table.css styling for consistency
+      MuiDataGrid: {
+        styleOverrides: {
+          root: {
+            border: `1px solid ${tokens.border.subtle}`,
+            borderRadius: '10px',
+            fontFamily: tokens.fonts.body,
+          },
+          columnHeaders: {
+            backgroundColor: tokens.colors.space,
+            borderBottom: `2px solid ${tokens.colors.galaxy}`,
+            minHeight: '48px !important',
+            maxHeight: '48px !important',
+          },
+          columnHeader: {
+            backgroundColor: tokens.colors.space,
+            color: tokens.colors.moon,
+            fontFamily: tokens.fonts.display,
+            fontWeight: tokens.fontWeight.extrabold,
+            textTransform: 'uppercase',
+            letterSpacing: tokens.letterSpacing.caps,
+            fontSize: tokens.fontSize.sm,
+            '&:focus, &:focus-within': {
+              outline: `2px solid ${tokens.colors.galaxy}`,
+              outlineOffset: '-2px',
+            },
+          },
+          columnHeaderTitle: {
+            fontFamily: tokens.fonts.display,
+            fontWeight: tokens.fontWeight.extrabold,
+          },
+          columnSeparator: {
+            color: tokens.colors.galaxy,
+          },
+          cell: {
+            borderBottom: `1px solid ${tokens.border.subtle}`,
+            '&:focus, &:focus-within': {
+              outline: `2px solid ${tokens.colors.galaxy}`,
+              outlineOffset: '-2px',
+            },
+          },
+          row: {
+            '&:nth-of-type(even)': {
+              backgroundColor: 'rgba(219, 230, 227, 0.3)', // RM Dust at 30%
+            },
+            '&:hover': {
+              backgroundColor: 'rgba(224, 193, 105, 0.2) !important', // RM Estrella at 20%
+              transition: 'background-color 0.2s ease',
+            },
+          },
+          footerContainer: {
+            borderTop: `1px solid ${tokens.border.subtle}`,
+          },
+        },
+      },
+
       // Slider - maps RM brand tokens to MUI's Slider component
       MuiSlider: {
         styleOverrides: {
