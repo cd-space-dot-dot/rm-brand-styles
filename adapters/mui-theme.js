@@ -40,16 +40,19 @@ export function getRMThemeConfig() {
             secondary: tokens.text.secondary,
           },
           error: {
-            main: tokens.status.danger.text,
-            light: tokens.status.danger.bg,
+            main: tokens.status.danger.bg,
+            dark: tokens.status.danger.text,
+            contrastText: tokens.status.danger.text, // Text color for Chip component
           },
           warning: {
-            main: tokens.status.warning.text,
-            light: tokens.status.warning.bg,
+            main: tokens.status.warning.bg,
+            dark: tokens.status.warning.text,
+            contrastText: tokens.status.warning.text, // Text color for Chip component
           },
           success: {
-            main: tokens.status.success.text,
-            light: tokens.status.success.bg,
+            main: tokens.status.success.bg,
+            dark: tokens.status.success.text,
+            contrastText: tokens.status.success.text, // Text color for Chip component
           },
           link: {
             main: tokens.link.default,
@@ -314,6 +317,7 @@ export function getRMThemeConfig() {
             borderRadius: tokens.radius.s,
             fontWeight: tokens.fontWeight.semibold,
           },
+          // Default filled variant (when no color prop is specified)
           filled: {
             backgroundColor: tokens.accent[100],
             color: tokens.accent[700],
@@ -321,31 +325,9 @@ export function getRMThemeConfig() {
               backgroundColor: tokens.accent[200],
             },
           },
-          // Allow color props to override default purple
-          colorSuccess: {
-            backgroundColor: tokens.status.success.bg,
-            color: tokens.status.success.text,
-            '&.MuiChip-clickable:hover': {
-              backgroundColor: tokens.status.success.text,
-              color: '#fff',
-            },
-          },
-          colorWarning: {
-            backgroundColor: tokens.status.warning.bg,
-            color: tokens.status.warning.text,
-            '&.MuiChip-clickable:hover': {
-              backgroundColor: tokens.status.warning.text,
-              color: '#fff',
-            },
-          },
-          colorError: {
-            backgroundColor: tokens.status.danger.bg,
-            color: tokens.status.danger.text,
-            '&.MuiChip-clickable:hover': {
-              backgroundColor: tokens.status.danger.text,
-              color: '#fff',
-            },
-          },
+          // Note: colorSuccess, colorWarning, colorError now handled by palette
+          // The Chip component automatically uses palette[color].main for background
+          // and palette[color].contrastText for text color
         },
       },
 
