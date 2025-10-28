@@ -135,6 +135,11 @@ export const tokens = {
       text: '#134E13',
       border: '#96C49A',
     },
+    warning: {
+      bg: '#FFF4E6',
+      text: '#7A4900',
+      border: '#FFD699',
+    },
     danger: {
       bg: '#FCE6E8',
       text: '#7E1E26',
