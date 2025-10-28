@@ -43,6 +43,10 @@ export function getRMThemeConfig() {
             main: tokens.status.danger.text,
             light: tokens.status.danger.bg,
           },
+          warning: {
+            main: tokens.status.warning.text,
+            light: tokens.status.warning.bg,
+          },
           success: {
             main: tokens.status.success.text,
             light: tokens.status.success.bg,
