@@ -312,6 +312,31 @@ export function getRMThemeConfig() {
               backgroundColor: tokens.accent[200],
             },
           },
+          // Allow color props to override default purple
+          colorSuccess: {
+            backgroundColor: tokens.status.success.bg,
+            color: tokens.status.success.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.success.text,
+              color: '#fff',
+            },
+          },
+          colorWarning: {
+            backgroundColor: tokens.status.warning.bg,
+            color: tokens.status.warning.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.warning.text,
+              color: '#fff',
+            },
+          },
+          colorError: {
+            backgroundColor: tokens.status.danger.bg,
+            color: tokens.status.danger.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.danger.text,
+              color: '#fff',
+            },
+          },
         },
       },
 
