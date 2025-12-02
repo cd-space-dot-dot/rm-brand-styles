@@ -1,6 +1,6 @@
 {
   "name": "@russell-marketing/brand-styles",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Russell Marketing design system - tokens, components, and accessibility utilities",
   "type": "module",
   "main": "ui/rm-ui.entry.js",
@@ -12,7 +12,11 @@
     },
     "./styles": "./ui/rm-ui.entry.css",
     "./tokens": "./ui/tokens.css",
-    "./tokens.js": "./ui/tokens.js",
+    "./tokens.js": {
+      "types": "./ui/tokens.d.ts",
+      "import": "./ui/tokens.js",
+      "default": "./ui/tokens.js"
+    },
     "./core": "./ui/core.css",
     "./dark": "./ui/dark.css",
     "./utilities": "./ui/utilities.css",
