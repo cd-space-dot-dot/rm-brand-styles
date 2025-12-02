@@ -317,17 +317,38 @@ export function getRMThemeConfig() {
             borderRadius: tokens.radius.s,
             fontWeight: tokens.fontWeight.semibold,
           },
-          // Default filled variant (when no color prop is specified)
+          // Default filled variant (only when no color prop is specified)
           filled: {
-            backgroundColor: tokens.accent[100],
-            color: tokens.accent[700],
-            '&.MuiChip-clickable:hover': {
-              backgroundColor: tokens.accent[200],
+            '&.MuiChip-colorDefault': {
+              backgroundColor: tokens.accent[100],
+              color: tokens.accent[700],
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: tokens.accent[200],
+              },
             },
           },
-          // Note: colorSuccess, colorWarning, colorError now handled by palette
-          // The Chip component automatically uses palette[color].main for background
-          // and palette[color].contrastText for text color
+          // Explicit overrides for status colors to ensure they use the correct tokens
+          colorSuccess: {
+            backgroundColor: tokens.status.success.bg,
+            color: tokens.status.success.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.success.border,
+            },
+          },
+          colorWarning: {
+            backgroundColor: tokens.status.warning.bg,
+            color: tokens.status.warning.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.warning.border,
+            },
+          },
+          colorError: {
+            backgroundColor: tokens.status.danger.bg,
+            color: tokens.status.danger.text,
+            '&.MuiChip-clickable:hover': {
+              backgroundColor: tokens.status.danger.border,
+            },
+          },
         },
       },
 
