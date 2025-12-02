@@ -317,9 +317,10 @@ export function getRMThemeConfig() {
             borderRadius: tokens.radius.s,
             fontWeight: tokens.fontWeight.semibold,
           },
-          // Default filled variant (only when no color prop is specified)
           filled: {
-            '&.MuiChip-colorDefault': {
+            // Only set background for default color when NOT overridden by sx
+            // Using :not([style*="background"]) selector to allow sx overrides
+            '&.MuiChip-colorDefault:not([style*="background"])': {
               backgroundColor: tokens.accent[100],
               color: tokens.accent[700],
               '&.MuiChip-clickable:hover': {
