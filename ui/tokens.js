@@ -201,18 +201,18 @@ export const tokens = {
     benchmark: '#E0C169',     // Estrella - benchmark/comparison lines
 
     // Categorical palette for pie charts & multi-series (10 colors)
-    // Derived from brand gradient + complementary warm tones
+    // Brand gradient: Space → Galaxy → Dust (perceptually uniform)
     categorical: [
-      '#2D334D',  // Space
-      '#7A64A0',  // Galaxy
-      '#5A4286',  // Accent 700 (dark purple)
-      '#9B85BA',  // Mid purple (interpolated)
-      '#C2B1EA',  // Accent 300 (light purple)
-      '#E0C169',  // Estrella (warm contrast)
-      '#D4A84B',  // Darker gold
-      '#8B7355',  // Warm brown (complement)
-      '#6B8E8E',  // Teal (cool contrast)
-      '#4A6B6B',  // Dark teal
+      '#2D334D',  // Space (start)
+      '#3D3E5A',  // Interpolated
+      '#5A4286',  // Accent 700
+      '#7A64A0',  // Galaxy (mid)
+      '#9B85BA',  // Interpolated
+      '#B8A7C8',  // Interpolated
+      '#C8C5D0',  // Interpolated (purple→sage)
+      '#D0D6D4',  // Interpolated
+      '#DBE6E3',  // Dust (end)
+      '#E8F0ED',  // Lighter dust
     ],
 
     // LLM/Model-specific colors (official brand colors)
