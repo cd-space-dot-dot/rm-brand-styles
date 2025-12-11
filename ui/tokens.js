@@ -180,6 +180,54 @@ export const tokens = {
   tint: {
     dust12: '#EEF3F1',
   },
+
+  // Chart/Data Visualization tokens
+  charts: {
+    // Background for charts (use Moon on Moon backgrounds, transparent on white)
+    background: '#F7F8F6', // Moon
+
+    // Primary gradient for sequential data (pie charts, heatmaps, etc.)
+    // Charts can interpolate between these points
+    gradient: {
+      start: '#2D334D',  // Space - darkest
+      mid: '#7A64A0',    // Galaxy - primary purple
+      end: '#DBE6E3',    // Dust - lightest
+    },
+
+    // Single-series defaults (per brand guide)
+    bar: '#7A64A0',           // Galaxy - default bar/column color
+    barEmphasis: '#2D334D',   // Space - higher emphasis
+    barMuted: '#DBE6E3',      // Dust - lower emphasis
+    benchmark: '#E0C169',     // Estrella - benchmark/comparison lines
+
+    // Categorical palette for pie charts & multi-series (10 colors)
+    // Derived from brand gradient + complementary warm tones
+    categorical: [
+      '#2D334D',  // Space
+      '#7A64A0',  // Galaxy
+      '#5A4286',  // Accent 700 (dark purple)
+      '#9B85BA',  // Mid purple (interpolated)
+      '#C2B1EA',  // Accent 300 (light purple)
+      '#E0C169',  // Estrella (warm contrast)
+      '#D4A84B',  // Darker gold
+      '#8B7355',  // Warm brown (complement)
+      '#6B8E8E',  // Teal (cool contrast)
+      '#4A6B6B',  // Dark teal
+    ],
+
+    // LLM/Model-specific colors (official brand colors)
+    llm: {
+      claude: '#DE7356',    // Anthropic peach
+      gpt: '#74AA9C',       // ChatGPT teal
+      llama: '#0082FB',     // Meta blue
+      gemini: '#4285F4',    // Google blue
+      mistral: '#FA520F',   // Mistral orange
+      copilot: '#8A50D8',   // Microsoft Copilot purple
+      perplexity: '#20808D', // Perplexity teal
+      huggingface: '#FFCC00', // Hugging Face yellow
+      default: '#2D334D',   // Space - fallback
+    },
+  },
 };
 
 // Dark mode tokens

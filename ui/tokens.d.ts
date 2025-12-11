@@ -148,6 +148,32 @@ export interface Tokens {
       border: string;
     };
   };
+
+  charts: {
+    background: string;
+    gradient: {
+      start: string;
+      mid: string;
+      end: string;
+    };
+    bar: string;
+    barEmphasis: string;
+    barMuted: string;
+    benchmark: string;
+    categorical: string[];
+    llm: {
+      claude: string;
+      gpt: string;
+      llama: string;
+      gemini: string;
+      mistral: string;
+      copilot: string;
+      perplexity: string;
+      huggingface: string;
+      default: string;
+      [key: string]: string;
+    };
+  };
 }
 
 export const tokens: Tokens;
