@@ -478,10 +478,12 @@ export function getRMThemeConfig() {
         styleOverrides: {
           root: {
             height: tokens.slider.trackHeight,
-            padding: `0 ${tokens.slider.paddingLeft}`,
-            // MUI's Slider root is box-sizing:content-box; with horizontal padding
-            // that makes width:100% overflow its container. Force border-box so the
-            // padding stays inside the slider's width (keeps it inside its card).
+            // Do NOT put horizontal padding on the Slider root. MUI's rail, track,
+            // and thumb are absolutely positioned against the root's PADDING box, so
+            // horizontal padding shifts them right and overflows the container (the
+            // rail keeps width:100% but starts at the padding-left offset). To give a
+            // slider breathing room, pad/margin a wrapper around it instead.
+            padding: 0,
             boxSizing: 'border-box',
             '& .MuiSlider-thumb': {
               width: tokens.slider.thumbWidth,
